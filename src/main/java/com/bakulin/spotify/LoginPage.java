@@ -26,26 +26,32 @@ public class LoginPage extends Page {
 		super(s);
 	}
 	
-	/** Waits for Login page to be displayed (i.e. logo is visible). */
+	/** Waits for Login screen to be displayed. Done through check if Logo is visible. Used for POM initialization. */
 	@Override
 	void waitForPageToBeDisplayed() {
-		System.out.println("Loading Login Page POM.");
+		System.out.println("Loading Login Screen POM.");
 		try {
 			s.wait(APP_LOGO_PATTERN, TIMEOUT_LOGIN_PAGE_DISPLAY);
+			System.out.printf("Successfully found %s, Login Screen is visible.\n", APP_LOGO_PATTERN);
 		} catch (FindFailed e) {
-			System.out.println("Was not able to find pattern " + APP_LOGO_PATTERN);
+			System.out.printf("Was not able to find pattern %s, Login Screen is not visible.\n", APP_LOGO_PATTERN);
 		}
 	}
-	
-	public Boolean isLoginPageDisplayed() throws FindFailed {
-		System.out.println("Checking if Login Page is displayed.");
-		Match logo = s.wait(APP_LOGO_PATTERN, TIMEOUT_LOGIN_PAGE_DISPLAY);
-		if (logo != null) {
-			System.out.println("Found logo!");
-			logo.highlight(1);
-			return true;
+		
+	/**
+	 * Checks if Login screen page is currently visible.
+	 * @return true if visible, flase otherwise
+	 */
+	public static Boolean isDisplayed(Screen s){
+		try {
+			Match logo = s.find(APP_LOGO_PATTERN);
+			if (logo != null) {
+				return true; 
+			} else {
+				return false;
+			}
+		} catch (FindFailed e) {
 		}
-		System.out.println("Logo was not found!");
 		return false;
 	}
 
@@ -54,7 +60,7 @@ public class LoginPage extends Page {
 	 * 
 	 * @param username to be used for authorization
 	 * @param password to be used for authorization
-	 * @return HomePage new page instance for next screen
+	 * @return {@link HomePage} new page instance for next screen
 	 * @throws FindFailed if pattern is not found
 	 */
 	public HomePage loginAsValidUser(String username, String password) throws FindFailed {
@@ -64,14 +70,13 @@ public class LoginPage extends Page {
 	}
 	
 	/**
-	 * Logs in Spotify desktop client with given valid username / password.
+	 * Logs in Spotify desktop client with given valid username / password and selects "remember me" flag.
 	 * 
 	 * @param username to be used for authorization
 	 * @param password to be used for authorization
 	 * @param rememberMe flag for "remember me" button
-	 * @return HomePage new page instance for next screen
-	 * @throws FindFailed
-	 *           if pattern is not found
+	 * @return {@link HomePage} new page instance for next screen
+	 * @throws FindFailed if pattern is not found
 	 */
 	public HomePage loginAsValidUser(String username, String password, boolean rememberMe) throws FindFailed {
 		provideCredentials(username, password);
@@ -81,10 +86,12 @@ public class LoginPage extends Page {
 	}
 
 	/**
+	 * 
 	 * Attempts to log in with invalid username / password.
 	 * 
 	 * @param username to be used for authorization
 	 * @param password to be used for authorization
+	 * @return {@link LoginPage} same page
 	 * @throws FindFailed if pattern is not found
 	 */
 	public LoginPage loginAsInvalidUser(String username, String password) throws FindFailed {
@@ -139,18 +146,30 @@ public class LoginPage extends Page {
 		}
 	}
 
-	public Boolean isLoginErrorDisplayed() throws FindFailed {
-		Match loginError = s.wait(LOGIN_ERROR_PATTERN, TIMEOUT_LOGIN_PAGE_DISPLAY);
-		if (loginError != null) {
-			System.out.println("Login error displayed!");
+	/**
+	 * Checks if login error is displayed.
+	 * @return true if displayed, false otherwise
+	 */
+	public Boolean isLoginErrorDisplayed() {
+		Match loginError;
+		System.out.println("Checking if error message is displayed.");
+		try {
+			loginError = s.wait(LOGIN_ERROR_PATTERN, TIMEOUT_LOGIN_PAGE_DISPLAY);
+			System.out.println("Login error message is displayed!");
 			loginError.highlight(1);
 			return true;
-		} else {
+		} catch (FindFailed e) {
+			System.out.println("Login error message is not displayed!");
 			return false;
 		}
 	}
 
+	/**
+	 * Checks if username input is empty.
+	 * @return true if empty, false otherwise
+	 */
 	public Boolean isEmptyUsernameInput() {
+		System.out.println("Checking if empty username input is displayed.");
 		try {
 			Match emptyUsernameInput = s.wait(USERNAME_EMPTY_PATTERN.exact(), TIMEOUT_LOGIN_PAGE_DISPLAY);
 			emptyUsernameInput.highlight(1);

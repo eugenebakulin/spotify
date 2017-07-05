@@ -16,6 +16,10 @@ public class PlayerTest extends SpotifyBasicTest {
 	private final String searchRequest = readTestData("artist_search_request_playertest");
 	private Pattern artistPattern = new Pattern(readTestData("artist_pattern_playertest"));
 	
+	/**
+	 * Logs in, searches for artist, clicks on artist image, verifies that song is playing, 
+	 * @throws FindFailed
+	 */
 	@Test
 	public void testCanPlay() throws FindFailed {
 		Boolean isPlayerPlaying = 

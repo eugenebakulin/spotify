@@ -15,9 +15,10 @@ public class SearchTest extends SpotifyBasicTest {
 	private final String searchRequest = readTestData("artist_search_request");
 	private Pattern artistPattern = new Pattern(readTestData("artist_pattern"));
 
-	/*
-	 * We assume Artist Pattern to be visible on first screen as we search by
-	 * Artist name. Search by less relevant request should be a separate case.
+	/**
+	 * Logs in, searches for artist, verifies if artist is found.
+	 * It's expected that exact artist name will be used for search, so artist would be visible on first screen.
+	 * @throws FindFailed
 	 */
 	@Test
 	public void testSearchByValidArtistName() throws FindFailed {

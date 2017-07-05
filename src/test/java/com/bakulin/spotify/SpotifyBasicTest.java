@@ -1,18 +1,11 @@
 package com.bakulin.spotify;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.sikuli.script.App;
-import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
 
-import com.bakulin.spotify.HomePage;
 import com.bakulin.spotify.utils.SystemActions;
 import com.bakulin.spotify.utils.TestDataProvider;
 
@@ -40,22 +33,19 @@ public abstract class SpotifyBasicTest {
 	
 	/**
 	 * Launches client, prepares for test.
-	 * @throws FindFailed 
 	 */
 	@Before
-	public void launchClient() throws FindFailed {
+	public void launchClient() {
 		s = new Screen();
 		app = SystemActions.launchClient();
 	}
 	
 	/**
 	 * Performs Log out action, closes the client.
-	 * @throws FindFailed
 	 */
 	@After
-	public void teardown() throws FindFailed {
-		//TODO: check if not LoginPage is displayed > then
-		new HomePage(s).logOut();
+	public void teardown() {
+		SystemActions.logOutIfNeccessary(s);
 		SystemActions.closeClient(app);
 	}
 	

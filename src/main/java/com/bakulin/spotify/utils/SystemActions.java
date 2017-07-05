@@ -15,13 +15,13 @@ import com.bakulin.spotify.LoginPage;
 public class SystemActions {
 	
 	private final static String BUNDLE_PATH = "src/main/resources";
-	private final static String APP_PATH_WIN = "C:\\Users\\Eugene_Bakulin\\AppData\\Roaming\\Spotify\\Spotify.exe";
+	private final static String PROPERTIES_FILE = "src/main/resources/testdata.properties";
+	private final static String APP_PATH_WIN = TestDataProvider.readTestData("win_app_location", PROPERTIES_FILE);
+	private final static String APP_PATH_MAC = TestDataProvider.readTestData("mac_app_location", PROPERTIES_FILE);
 	private final static int TIMEOUT_CLIENT_LAUNCH = 10;
 	
-	public SystemActions() {};
-	
 	/**
-	 * Selects all text in input and clears it.
+	 * Selects all text in active input and clears it.
 	 * @param s Screen
 	 */
 	public static void selectAllAndClear(Screen s) {
@@ -38,8 +38,14 @@ public class SystemActions {
 	 * @return {@link App} instance of launched client
 	 */
 	public static App launchClient() {
-		//TODO: implement launch for Mac
-		App app = new App(APP_PATH_WIN);
+		System.out.println("Launching client.");
+		String appPath = "";
+		if (Settings.isWindows()) {
+			appPath = APP_PATH_WIN;
+		} else if (Settings.isMac()) {
+			appPath = APP_PATH_MAC;
+		}
+		App app = new App(appPath);
 		app.open(TIMEOUT_CLIENT_LAUNCH);
 		return app;
 	}
@@ -58,29 +64,45 @@ public class SystemActions {
 	}
 
 	/**
-	 * Updates Settings before test execution.
+	 * Applies Settings before test execution.
 	 */
 	public static void updateSettings() {
 		Settings.AutoWaitTimeout = 10f;
 		Settings.setShowActions(true);
 //		Settings.Highlight = true;
-		Settings.ActionLogs = true;
+		Settings.ActionLogs = false;
 		ImagePath.setBundlePath(BUNDLE_PATH);
 	}
 
 	/**
 	 * Closes Spotify client.
-	 * @param s
+	 * @param s Screen
 	 */
 	public static void closeClient(App app) {
+		System.out.println("Closing client.");
 		app.close();
 	}
 	
-	public static LoginPage logOut(Screen s) {
-		logoutKeysCombination(s);
+	/**
+	 * Checks if log out if necessary (i.e. not Login screen is displayed. Logs out.
+	 * @param s Screen
+	 * @return {@link LoginPage}
+	 */
+	public static LoginPage logOutIfNeccessary(Screen s) {
+		System.out.println("Checking if log out is neccessary.");
+		if (!LoginPage.isDisplayed(s)){
+			System.out.println("Logging out.");
+			logoutKeysCombination(s);
+		} else {
+			System.out.println("Already logged out");
+		}
 		return new LoginPage(s);
 	}
 
+	/**
+	 * Performs hotkey combination for logout.
+	 * @param s Screen
+	 */
 	public static void logoutKeysCombination(Screen s) {
 		if (Settings.isWindows()) {
 			s.type("w", KeyModifier.CTRL + KeyModifier.SHIFT);

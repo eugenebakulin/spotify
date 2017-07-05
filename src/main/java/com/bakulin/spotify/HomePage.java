@@ -19,7 +19,7 @@ public class HomePage extends Page {
 	private static final Pattern ARTISTS_HEADER_PATTERN = new Pattern("artists_header.png");
 	private static final Pattern SEARCH_INPUT_PATTERN = new Pattern("search_input.png");
 	private static final Pattern OVERVIEW_MENU_PATTERN = new Pattern("overview_menu.png");
-	private static final int TIMEOUT_HOME_PAGE_DISPLAY = 20; 
+	private static final int TIMEOUT_HOME_PAGE_DISPLAY = 20;
 
 	public HomePage(Screen s) {
 		super(s);

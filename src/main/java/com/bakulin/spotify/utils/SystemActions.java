@@ -41,13 +41,27 @@ public class SystemActions {
 		System.out.println("Launching client.");
 		String appPath = "";
 		if (Settings.isWindows()) {
-			appPath = APP_PATH_WIN;
+			appPath = (APP_PATH_WIN != "" && APP_PATH_WIN != null) ? APP_PATH_WIN : buildDefaultWinAppPath();
 		} else if (Settings.isMac()) {
 			appPath = APP_PATH_MAC;
 		}
 		App app = new App(appPath);
 		app.open(TIMEOUT_CLIENT_LAUNCH);
 		return app;
+	}
+	
+	/**
+	 * Builds String with path to Spotify app location on Windows using default location.
+	 * Format: $USER.HOME\\AppData\\Roaming\\Spotify\\Spotify.exe
+	 * This method is called of no value provided for win_app_location in properties file.
+	 * @return String value of path
+	 */
+	private static String buildDefaultWinAppPath () {
+		StringBuilder sb = new StringBuilder();
+		sb
+			.append(System.getProperty("user.home"))
+			.append("\\AppData\\Roaming\\Spotify\\Spotify.exe");
+		return sb.toString();
 	}
 
 	/**

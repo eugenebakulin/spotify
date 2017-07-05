@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="1" name="com.bakulin.spotify.client.testing.LoginTest" time="95.55" errors="0" skipped="0">
+<testsuite tests="3" failures="1" name="com.bakulin.spotify.client.testing.LoginTest" time="106.147" errors="1" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_60\jre\bin"/>
@@ -63,14 +63,69 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.bakulin.spotify.client.testing.LoginTest" name="testLogInAsValidUser" time="18.529"/>
-  <testcase classname="com.bakulin.spotify.client.testing.LoginTest" name="testLogInAsInvalidUser" time="32.12"/>
-  <testcase classname="com.bakulin.spotify.client.testing.LoginTest" name="testUncheckedRememberMe" time="44.901">
+  <testcase classname="com.bakulin.spotify.client.testing.LoginTest" name="testLogInAsValidUser" time="26.953">
+    <error message="password_input.png: (314x40) in S(0)[0,0 1366x768] E:Y, T:10.0" type="FindFailed">FindFailed: password_input.png: (314x40) in S(0)[0,0 1366x768] E:Y, T:10.0
+  Line 2759, in file Region.java
+
+	at org.sikuli.script.Region.wait(Region.java:2759)
+	at org.sikuli.script.Region.find(Region.java:2336)
+	at org.sikuli.script.Region.getLocationFromTarget(Region.java:3213)
+	at org.sikuli.script.Region.click(Region.java:3698)
+	at org.sikuli.script.Region.click(Region.java:3683)
+	at com.bakulin.spotify.client.testing.LoginPage.provideCredentials(LoginPage.java:104)
+	at com.bakulin.spotify.client.testing.LoginPage.loginAsValidUser(LoginPage.java:60)
+	at com.bakulin.spotify.client.testing.LoginTest.testLogInAsValidUser(LoginTest.java:12)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+</error>
+    <system-out>Running test on Windows 6.1
+[log] App.open [8660:Spotify.exe]
+Loading Login Page POM.
+Was not able to find pattern P(logo.png) S: 0.7
+Checking of Home page is displayed. Looking for Player menu.
+Player menu is displayed.
+[log] ( Ctrl+Shift )  TYPE &quot;w&quot;
+Loading Login Page POM.
+[log] App.close: [8660:Spotify.exe]
+</system-out>
+  </testcase>
+  <testcase classname="com.bakulin.spotify.client.testing.LoginTest" name="testLogInAsInvalidUser" time="33.058"/>
+  <testcase classname="com.bakulin.spotify.client.testing.LoginTest" name="testUncheckedRememberMe" time="46.136">
     <failure type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
 	at org.junit.Assert.assertTrue(Assert.java:52)
-	at com.bakulin.spotify.client.testing.LoginTest.testUncheckedRememberMe(LoginTest.java:63)
+	at com.bakulin.spotify.client.testing.LoginTest.testUncheckedRememberMe(LoginTest.java:31)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -104,60 +159,28 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </failure>
-    <system-out>[log] App.open [11220:Spotify.exe]
-[log] CLICK on L(909,344)@S(0)[0,0 1366x768] (530 msec)
+    <system-out>[log] App.open [8044:Spotify.exe]
+Loading Login Page POM.
+[log] CLICK on L(909,344)@S(0)[0,0 1366x768] (520 msec)
 [log] ( Ctrl )  TYPE &quot;a&quot;
 [log]  TYPE &quot;#DEL.&quot;
 [log]  TYPE &quot;Californiaby&quot;
-[log] CLICK on L(909,388)@S(0)[0,0 1366x768] (529 msec)
+[log] CLICK on L(909,388)@S(0)[0,0 1366x768] (520 msec)
 [log] ( Ctrl )  TYPE &quot;a&quot;
 [log]  TYPE &quot;#DEL.&quot;
 [log]  TYPE &quot;password&quot;
-[log] CLICK on L(1040,428)@S(0)[0,0 1366x768] (522 msec)
-[log] CLICK on L(908,476)@S(0)[0,0 1366x768] (533 msec)
+[log] CLICK on L(1040,428)@S(0)[0,0 1366x768] (520 msec)
+[log] CLICK on L(908,476)@S(0)[0,0 1366x768] (521 msec)
+Checking of Home page is displayed. Looking for Player menu.
+Player menu is displayed.
 [log] ( Ctrl+Shift )  TYPE &quot;w&quot;
+Loading Login Page POM.
 Was not able to find pattern P(username_input.png) S: 0.99
+Checking of Home page is displayed. Looking for Player menu.
+Player menu is not displayed.
 [log] ( Ctrl+Shift )  TYPE &quot;w&quot;
-[log] App.close: [11220:Spotify.exe]
+Loading Login Page POM.
+[log] App.close: [8044:Spotify.exe]
 </system-out>
-    <system-err>FindFailed: player_menu.png: (236x47) seen at (797, 553) with 0.90 in S(0)[0,0 1366x768] E:Y, T:10.0
-  Line 2759, in file Region.java
-
-	at org.sikuli.script.Region.wait(Region.java:2759)
-	at com.bakulin.spotify.client.testing.HomePage.waitForPageToBeDisplayed(HomePage.java:33)
-	at com.bakulin.spotify.client.testing.Page.&lt;init&gt;(Page.java:11)
-	at com.bakulin.spotify.client.testing.HomePage.&lt;init&gt;(HomePage.java:26)
-	at com.bakulin.spotify.client.testing.LoginTest.teardown(LoginTest.java:68)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:33)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-</system-err>
   </testcase>
 </testsuite>

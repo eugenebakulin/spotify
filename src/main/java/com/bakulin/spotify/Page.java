@@ -13,5 +13,5 @@ public abstract class Page {
 	
 	/** Checks if Page is loaded. Must be overriden and implemented on page level. */
 	abstract void waitForPageToBeDisplayed();
-
+	
 }

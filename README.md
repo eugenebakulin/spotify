@@ -28,7 +28,7 @@ LoginTest
 * Try to log in as invalid user and verify that error message is displayed
 * Log in as valid user with "remember me" unchecked, log out and verify that username was not saved
 * Search for artist and verify that expected image is displayed
-* SEarch for artist, launch song and verify that song is played indeed
+* Search for artist, launch song and verify that song is played indeed
 
 ## Framework Architecture
 This framework is implemented using Page-Object Model pattern.

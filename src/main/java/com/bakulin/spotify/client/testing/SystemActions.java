@@ -67,8 +67,13 @@ public class SystemActions {
 	 * Closes Spotify client.
 	 * @param s
 	 */
-	public void closeClient(App app) {
+	public static void closeClient(App app) {
 		app.close();
+	}
+	
+	public static LoginPage logOut(Screen s) {
+		logoutKeysCombination(s);
+		return new LoginPage(s);
 	}
 
 	public static void logoutKeysCombination(Screen s) {

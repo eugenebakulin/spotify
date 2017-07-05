@@ -1,6 +1,5 @@
 package com.bakulin.spotify.client.testing;
 
-import org.sikuli.basics.Settings;
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
@@ -9,9 +8,11 @@ import org.sikuli.script.Pattern;
 import org.sikuli.script.Region;
 import org.sikuli.script.Screen;
 
-public class HomePage {
-	// TODO: implement parent class Page, extend
-
+/**
+ * Page-Object Model representation of Home Page for Spotify desktop client.
+ */
+public class HomePage extends Page {
+	
 	private static final Pattern PLAYER_MENU_PATTERN = new Pattern("player_menu.png");
 	private static final Pattern PLAYER_MENU_ACTIVE_PATTERN = new Pattern("player_menu_active.png");
 	private static final Pattern ARTISTS_HEADER_PATTERN = new Pattern("artists_header.png");
@@ -21,19 +22,19 @@ public class HomePage {
 	private static final Pattern GREEN_PLAY_BUTTON_PATTERN = new Pattern("green_play_button.png");
 	private static final int TIMEOUT_HOME_PAGE_DISPLAY = 20; 
 
-	Screen s;
-
 	public HomePage(Screen s) {
-		this.s = s;
-		waitForPageToBeDisplayed();
+		super(s);
 	}
 	
 	/** Checks if Login page is displayed (i.e. logo is visible). */
-	private void waitForPageToBeDisplayed() {
+	@Override
+	void waitForPageToBeDisplayed() {
+		System.out.println("Checking of Home page is displayed. Looking for Player menu.");
 		try {
 			s.wait(PLAYER_MENU_PATTERN, TIMEOUT_HOME_PAGE_DISPLAY);
+			System.out.println("Player menu is displayed.");
 		} catch (FindFailed e) {
-			e.printStackTrace();
+			System.out.println("Player menu is not displayed.");
 		}
 	}
 
@@ -41,6 +42,7 @@ public class HomePage {
 	 * Checks if Home page is displayed after log.
 	 */
 	public Boolean isHomePageDisplayed() throws FindFailed {
+		System.out.println("Checking if Home Page is displayed.");
 		Match playerMenu = s.wait(PLAYER_MENU_PATTERN, TIMEOUT_HOME_PAGE_DISPLAY);
 		if (playerMenu != null) {
 			System.out.println("Found player menu!");

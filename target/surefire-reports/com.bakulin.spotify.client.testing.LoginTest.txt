@@ -1,13 +1,13 @@
 -------------------------------------------------------------------------------
 Test set: com.bakulin.spotify.client.testing.LoginTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 54.007 sec <<< FAILURE!
-testUncheckedRememberMe(com.bakulin.spotify.client.testing.LoginTest)  Time elapsed: 23.209 sec  <<< FAILURE!
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 96.479 sec <<< FAILURE!
+testUncheckedRememberMe(com.bakulin.spotify.client.testing.LoginTest)  Time elapsed: 44.901 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
 	at org.junit.Assert.assertTrue(Assert.java:52)
-	at com.bakulin.spotify.client.testing.LoginTest.testUncheckedRememberMe(LoginTest.java:64)
+	at com.bakulin.spotify.client.testing.LoginTest.testUncheckedRememberMe(LoginTest.java:63)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

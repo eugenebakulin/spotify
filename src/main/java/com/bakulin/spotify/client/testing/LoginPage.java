@@ -7,16 +7,10 @@ import org.sikuli.script.Screen;
 import com.bakulin.spotify.client.testing.SystemActions;
 
 /**
- * POM class of Login Page for Spotify desktop client.
+ * Page-Object Model representation of Login Page for Spotify desktop client.
  */
-public class LoginPage {
+public class LoginPage extends Page {
 
-	Screen s;
-
-	/*
-	 * Login input can contain previously entered username, so easiest way to
-	 * locate - find password input and use negative vertical offset
-	 */
 	private static final Pattern USERNAME_PATTERN = new Pattern("password_input.png").targetOffset(0, -44);
 	private static final Pattern PASSWORD_PATTERN = new Pattern("password_input.png");
 	private static final Pattern USERNAME_EMPTY_PATTERN = new Pattern("username_input.png");
@@ -28,27 +22,39 @@ public class LoginPage {
 	private static final int TIMEOUT_LOGIN_PAGE_DISPLAY = 10; 
 
 	public LoginPage(Screen s) {
-		this.s = s;
-		waitForPageToBeDisplayed();
+		super(s);
 	}
-
-	/** Checks if Login page is displayed (i.e. logo is visible). */
-	private void waitForPageToBeDisplayed() {
+	
+	/** Waits for Login page to be displayed (i.e. logo is visible). */
+	@Override
+	void waitForPageToBeDisplayed() {
+		System.out.println("Loading Login Page POM.");
 		try {
 			s.wait(APP_LOGO_PATTERN, TIMEOUT_LOGIN_PAGE_DISPLAY);
 		} catch (FindFailed e) {
-			e.printStackTrace();
+			System.out.println("Was not able to find pattern " + APP_LOGO_PATTERN);
 		}
+	}
+	
+	public static Boolean isLoginPageDisplayed() throws FindFailed {
+		System.out.println("Checking if Login Page is displayed.");
+		Match logo = s.wait(APP_LOGO_PATTERN, TIMEOUT_LOGIN_PAGE_DISPLAY);
+		if (logo != null) {
+			System.out.println("Found logo!");
+			logo.highlight(1);
+			return true;
+		}
+		System.out.println("Logo was not found!");
+		return false;
 	}
 
 	/**
 	 * Logs in Spotify desktop client with given valid username / password.
 	 * 
-	 * @param username
-	 * @param password
+	 * @param username to be used for authorization
+	 * @param password to be used for authorization
 	 * @return HomePage new page instance for next screen
-	 * @throws FindFailed
-	 *           if pattern is not found
+	 * @throws FindFailed if pattern is not found
 	 */
 	public HomePage loginAsValidUser(String username, String password) throws FindFailed {
 		provideCredentials(username, password);
@@ -59,8 +65,8 @@ public class LoginPage {
 	/**
 	 * Logs in Spotify desktop client with given valid username / password.
 	 * 
-	 * @param username
-	 * @param password
+	 * @param username to be used for authorization
+	 * @param password to be used for authorization
 	 * @param rememberMe flag for "remember me" button
 	 * @return HomePage new page instance for next screen
 	 * @throws FindFailed
@@ -76,10 +82,9 @@ public class LoginPage {
 	/**
 	 * Attempts to log in with invalid username / password.
 	 * 
-	 * @param username
-	 * @param password
-	 * @throws FindFailed
-	 *           if pattern is not found
+	 * @param username to be used for authorization
+	 * @param password to be used for authorization
+	 * @throws FindFailed if pattern is not found
 	 */
 	public LoginPage loginAsInvalidUser(String username, String password) throws FindFailed {
 		provideCredentials(username, password);
@@ -90,12 +95,10 @@ public class LoginPage {
 	/**
 	 * Provides username, password, and unchecks "remember me" if necessary.
 	 * 
-	 * @param username
-	 * @param password
-	 * @param rememberMe
-	 *          false if script should uncheck option
-	 * @throws FindFailed
-	 *           if pattern is not found
+	 * @param username to be used for authorization
+	 * @param password to be used for authorization
+	 * @param rememberMe false if script should uncheck option
+	 * @throws FindFailed if pattern is not found
 	 */
 	private void provideCredentials(String username, String password) throws FindFailed {
 		s.click(USERNAME_PATTERN);
